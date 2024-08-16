@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CategoryService } from './category.service';
+import { Category } from './category.model';
 
 @Component({
   selector: 'app-category',
@@ -10,6 +12,20 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
 })
-export class CategoryComponent {
+export class CategoryComponent implements OnInit {
+
+  categoryService = inject(CategoryService);
+
+  categories: Category[] | undefined;
+
+  currentActivateCategory = this.categoryService.getCategoriesByDefault();
+  
+  ngOnInit(): void {
+      this.fetchCategories();
+  }
+
+  private fetchCategories() {
+    this.categories = this.categoryService.getCategories();
+  }
 
 }
