@@ -1,2 +1,7 @@
-<p-button>Hello World</p-button>
-<fa-icon [icon]="['fab', 'airbnb']">xxxx</fa-icon>
+<p-toast></p-toast>
+<app-navbar></app-navbar>
+<div class="grid grid-nogutter mb-5" [class.mx-8]="isListingView"></div>
+    <div class="col mt-5">
+        <router-outlet></router-outlet>
+    </div>
+<app-footer></app-footer>
